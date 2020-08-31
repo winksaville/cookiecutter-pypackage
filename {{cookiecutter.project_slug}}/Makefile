@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-pyc clean-build docs help format f test t
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -50,6 +50,8 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 {{ cookiecutter.project_slug }} tests
 
+t: test ## test
+
 test: ## run tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
 	pytest
@@ -59,6 +61,12 @@ test: ## run tests quickly with the default Python
 
 test-all: ## run tests on every Python version with tox
 	tox
+
+f: format ## format
+format: ## format/lint py files with isort, black and flake8
+	isort *.py
+	black *.py
+	flake8 *.py
 
 coverage: ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
