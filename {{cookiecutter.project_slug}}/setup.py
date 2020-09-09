@@ -14,7 +14,7 @@ requirements = [{%- if cookiecutter.command_line_interface|lower == "click" %}"C
 
 setup_requirements = [{%- if cookiecutter.use_pytest == "y" %}"pytest-runner",{%- endif %}]
 
-test_requirements = [{%- if cookiecutter.use_pytest == "y" %}"pytest>=3",{%- endif %}]
+test_requirements = [{%- if cookiecutter.use_pytest == "y" %}"pytest>=3.7",{%- endif %}]
 
 {%- set license_classifiers = {
     "MIT license": "License :: OSI Approved :: MIT License",
@@ -27,7 +27,7 @@ test_requirements = [{%- if cookiecutter.use_pytest == "y" %}"pytest>=3",{%- end
 setup(
     author="{{ cookiecutter.full_name.replace("\"", "\\\"") }}",
     author_email="{{ cookiecutter.email }}",
-    python_requires=">=3.5",
+    python_requires=">=3.7",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
@@ -51,6 +51,7 @@ setup(
     license="{{ cookiecutter.open_source_license }}",
 {%- endif %}
     long_description=readme + "\n\n" + history,
+    long_description_content_type="x-rst",
     include_package_data=True,
     keywords="{{ cookiecutter.project_slug }}",
     name="{{ cookiecutter.project_slug }}",
